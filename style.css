@@ -1,0 +1,144 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+}
+
+body {
+    background-color: rgb(29, 29, 29);
+}
+
+#container {
+    width: 400px;
+    margin: 100px auto;
+}
+
+#passwordPlace {
+    height: 60px;
+    background-color: rgb(68, 65, 65);
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+#password {
+    color: #5BC08E;
+    padding: 10px 20px;
+}
+
+#copy {
+    border: none;
+    background: none;
+    padding-right: 20px;
+}
+
+#copy:disabled {
+    pointer-events: none;
+}
+
+#copy:hover {
+    opacity: .6;
+}
+
+#copy:active {
+    opacity: 1;
+}
+
+#controlPassword {
+    margin-top: 20px;
+    background-color: rgb(68, 65, 65);
+    padding: 20px;
+}
+
+#passwordLength {
+    color: #5BC08E;
+}
+
+#characterLength {
+    margin-top: 10px;
+}
+
+#controlLength {
+    margin-bottom: 20px;
+}
+
+#range::-webkit-slider-thumb {
+    background-color: #5BC08E;
+}
+
+#range::-webkit-slider-runnable-track {
+    background-color: rgb(29, 29, 29);
+}
+
+.form-check-input {
+    margin-right: 20px;
+}
+
+.form-check-input:hover {
+    background-color: rgb(170, 226, 233);
+}
+
+.form-check-input:checked {
+    background-color: #5BC08E;
+    border: none;
+}
+
+.form-check {
+    margin-bottom: 10px;
+}
+
+#generate {
+    color: rgb(29, 29, 29);
+    background-color: #5BC08E;
+    width: 100%;
+    height: 50px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+#generate:hover {
+    opacity: .7;
+}
+
+#generate:active {
+    opacity: 1;
+}
+
+#strengthSection {
+    width: 100%;
+    height: 60px;
+    margin-top: 20px;
+    background-color: rgb(29, 29, 29);
+    padding: 15px;
+    overflow: hidden;
+}
+
+.strengthBoxes {
+    width: 10px;
+    height: 30px;
+    border: 1px solid white;
+}
+
+.form-check-label:hover {
+    opacity: .7;
+}
+
+.form-check-label:active {
+    opacity: 1;
+}
+
+.move {
+    animation-name: strength;
+    animation-duration: 2s;
+}
+
+@keyframes strength {
+    from {
+        margin-left: 30px;
+        opacity: .5;
+    }
+    to {
+        opacity: 1;
+        margin-left: 0;
+    }
+}
