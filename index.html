@@ -1,78 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
-    <title> Password Generator </title>
-    <head>
-        <link rel="icon" type="image/x-icon" href="https://icons.veryicon.com/png/o/miscellaneous/dh_report/login-page-password.png">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Genos&display=swap" rel="stylesheet">   
-        <meta content="width=device-width, initial-scale=1" name="viewport" /> 
-        <!-- <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css"> -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" href="style.css">
-    </head>
-    <body>
-        <div id="container">
-            <h5 class="fw-light text-white text-center"> Password Generator </h5>
-            <div id="passwordPlace">
-                <h3 id="password"></h3>
-                <button id="copy" onclick="copy()" 
-                    type="button" class="btn btn-secondary"
-                    data-bs-toggle="tooltip" data-bs-placement="top"
-                    data-bs-custom-class="custom-tooltip"
-                    data-bs-original-title="copy to clipboard"
-                    disabled 
-                >
-                </button>
-            </div>
-            <div id="controlPassword">
-                <div id="controlLength" class="text-white">
-                    <div class="d-flex justify-content-between">
-                        <p id="characterLength"> Character Length </p>
-                        <h2 id="passwordLength"> 0 </h2>
-                    </div>
-                    <input type="range" id="range" class="form-range" min="0" max="15" value="0" oninput="changeLength(this.value)">
-                </div>  
-                <form id="restrictions" class="text-white">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="check-0">
-                        <label class="form-check-label" onclick="check(0)"> Include Uppercase Letters </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="check-1">
-                        <label class="form-check-label" onclick="check(1)"> Include Lowercase Letters </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="check-2">
-                        <label class="form-check-label" onclick="check(2)"> Include Numbers </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="check-3">
-                        <label class="form-check-label" onclick="check(3)"> Include Symbols </label>
-                    </div>
-                </form>
-                <div id="strengthSection" class="text-white d-flex">
-                    <div style="width: 20%;">
-                        <p>STRENGTH</p>
-                    </div>
-                    <div style="width: 60%; text-align: right; height: 100px; padding-right: 20px;" id="strength"></div>  
-                    <div class="d-flex justify-content-between" style="width: 20%" id="strengthContainer"></div>
-                </div>
-                <button id="generate" onclick="Generate()" class="btn btn-secondary"> <h4>Generate</h4> </button>
-            </div>
+  <title>Password Generator</title>
+  <head>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://icons.veryicon.com/png/o/miscellaneous/dh_report/login-page-password.png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Genos&display=swap"
+      rel="stylesheet"
+    />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <!-- <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css"> -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <div id="container">
+      <h5 class="fw-light text-white text-center">Password Generator</h5>
+      <div id="passwordPlace">
+        <h3 id="password"></h3>
+        <button
+          id="copy"
+          onclick="copy()"
+          type="button"
+          class="btn btn-secondary"
+          data-bs-toggle="tooltip"
+          data-bs-placement="top"
+          data-bs-custom-class="custom-tooltip"
+          data-bs-original-title="copy to clipboard"
+          disabled
+        ></button>
+      </div>
+      <div id="controlPassword">
+        <div id="controlLength" class="text-white">
+          <div class="d-flex justify-content-between">
+            <p id="characterLength">Character Length</p>
+            <h2 id="passwordLength">0</h2>
+          </div>
+          <input
+            type="range"
+            id="range"
+            class="form-range"
+            min="0"
+            max="15"
+            value="0"
+            oninput="changeLength(this.value)"
+          />
         </div>
-        <div class="toast-container position-fixed bottom-0 end-0 p-3">
-            <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-              <div class="toast-header d-flex justify-content-between"> 
-                Can't create such a password 
-                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-              </div>
-              <div class="toast-body"> Edit your requirements to make it valid  </div>
-            </div>
+        <form id="restrictions" class="text-white">
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id="check-0"
+            />
+            <label class="form-check-label" onclick="check(0)">
+              Include Uppercase Letters
+            </label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id="check-1"
+            />
+            <label class="form-check-label" onclick="check(1)">
+              Include Lowercase Letters
+            </label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id="check-2"
+            />
+            <label class="form-check-label" onclick="check(2)">
+              Include Numbers
+            </label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id="check-3"
+            />
+            <label class="form-check-label" onclick="check(3)">
+              Include Symbols
+            </label>
+          </div>
+        </form>
+        <div id="strengthSection" class="text-white d-flex">
+          <div style="width: 20%">
+            <p>STRENGTH</p>
+          </div>
+          <div
+            style="
+              width: 60%;
+              text-align: right;
+              height: 100px;
+              padding-right: 20px;
+            "
+            id="strength"
+          ></div>
+          <div
+            class="d-flex justify-content-between"
+            style="width: 20%"
+            id="strengthContainer"
+          ></div>
         </div>
-    </body>
-    <!-- <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+        <button id="generate" onclick="Generate()" class="btn btn-secondary">
+          <h4>Generate</h4>
+        </button>
+      </div>
+    </div>
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+      <div
+        id="liveToast"
+        class="toast"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+      >
+        <div class="toast-header d-flex justify-content-between">
+          Can't create such a password
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="toast-body">Edit your requirements to make it valid</div>
+      </div>
+    </div>
+  </body>
+  <!-- <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
-    <script src="index.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+    crossorigin="anonymous"
+  ></script>
+  <script src="index.js"></script>
 </html>
